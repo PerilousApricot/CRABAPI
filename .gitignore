@@ -8,7 +8,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-bin/
 build/
 develop-eggs/
 dist/
@@ -52,3 +51,9 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+# Vim junk
+.*.swp
+.*.un~
+
+# remove virtual env
+venv/
