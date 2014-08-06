@@ -19,7 +19,7 @@ myTask = api.loadTask("task_id")
 failedJobs = []
 for job in myTask.jobs:
     if job.didFail() and job.failureReason == "blah":
-        failedJobs.append(job.id)
+        failedJobs.append(job)
 if failedJobs:
     myTask.resubmit(failedJobs)
 ```
