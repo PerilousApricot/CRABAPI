@@ -14,7 +14,6 @@ def setLogging(apiLevel = logging.INFO,
                 crabLevel = 100,
                 crabTracebackLevel = 100):
     """Set logging parameters. Mutes the CRAB client by default.
-
       returns apiLogger"""
     crabLog = logging.getLogger('CRAB3')
     crabTracebackLog = logging.getLogger('CRAB3:traceback')
@@ -26,6 +25,16 @@ def setLogging(apiLevel = logging.INFO,
 
     return apiLog
 
-def getLogger():
+def getLogger(suffix = ""):
     """ Helper function to get the logger back """
-    return logging.getLogger(API_LOGGER_NAME)
+    if suffix:
+        suffix = "." + suffix
+    return logging.getLogger(API_LOGGER_NAME + suffix)
+
+def getAllLoggers(suffix = ""):
+    """ Helper function to get all the loggers - API, CRAB, CRABTraceback """
+    if suffix:
+        suffix = "." + suffix
+    return logging.getLogger(API_LOGGER_NAME + suffix), \
+            logging.getLogger('CRAB3'), \
+            logging.getLogger('CRAB3:traceback')
