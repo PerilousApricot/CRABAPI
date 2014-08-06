@@ -10,6 +10,10 @@ SECOND_LENGTH=${#SECOND_LINE}
 REMAINDER_LONGEST=$(grep -v '^#' $1 | tail -n +3 | awk 'length > max_length { max_length = length; longest_line = $0 } END { print longest_line }')
 REMAINDER_LENGTH=${#REMAINDER_LONGEST}
 
+if [[ $(grep -v '^#' $1 | wc -l) -eq 1 && $FIRST_LENGTH -lt 51 ]]; then
+    exit 0
+fi
+
 if [[ $FIRST_LENGTH -gt 50 || $SECOND_LENGTH -gt 0 || $REMAINDER_LENGTH -gt 72 ]]; then
     echo "This commit message isn't formatted properly. The canonical explanation
 of a 'good' commit message can be found here:
