@@ -57,3 +57,9 @@ docs/_build/
 
 # remove virtual env
 venv/
+
+# remove other repos
+WMCore/
+CRABClient/
+CRABServer/
+CMSSW_*/
