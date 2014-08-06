@@ -11,7 +11,8 @@ fi
 
 pylint --rcfile=pylintrc \
             --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" \
+            --ignore=test_Task.py \
             -r n CRABAPI
 if [ $? -eq 0 ]; then
-    nosetests -w CRABAPI --with-coverage --cover-erase --cover-package=CRABAPI --cover-branches
+    nosetests CRABAPI/ --with-coverage --cover-erase --cover-package=CRABAPI --cover-branches
 fi
