@@ -14,5 +14,5 @@ pylint --rcfile=pylintrc \
             --ignore=test_Task.py \
             -r n CRABAPI
 if [ $? -eq 0 ]; then
-    nosetests CRABAPI/ --with-coverage --cover-erase --cover-package=CRABAPI --cover-branches
+    nosetests CRABAPI/ --cover-min-percentage=100 --with-coverage --cover-erase --cover-package=CRABAPI --cover-branches
 fi
