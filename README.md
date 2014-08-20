@@ -55,11 +55,11 @@ Contributions
 
 Contributions to this project need to fit the [DMWM coding standards](https://github.com/dmwm/WMCore/blob/master/standards/.pylintrc) as well as have test coverage that covers any updated
 lines of code. Executing ```bin/check-commit.sh``` will let you know if your
-working area passes muster.
+working area passes muster. Code that doesn't 100% fit within the pylint
+rules or have 100% test coverage will not be accepted.
 
 One note: Since the conception of WMCore, it has become more common for test
 cases to be named ```test_foo``` instead of ```foo_t```, and common testing
 tools have all begun to require that naming scheme. To that end, tests should
 be within the regular source tree and have their file/class names prefixed with
-```test_```
-
+``` test_ ```
