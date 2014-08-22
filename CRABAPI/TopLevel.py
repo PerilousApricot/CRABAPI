@@ -19,9 +19,11 @@ def setLogging(apiLevel = logging.INFO,
     crabTracebackLog = logging.getLogger('CRAB3:traceback')
     apiLog = logging.getLogger(API_LOGGER_NAME)
 
-    apiLog.setLevel(apiLevel)
-    crabLog.setLevel(crabLevel)
-    crabTracebackLog.setLevel(crabTracebackLevel)
+    for oneLog, oneLevel in ( (apiLog, apiLevel),
+                              (crabLog, crabLevel),
+                              (crabTracebackLog, crabTracebackLevel) ):
+        oneLog.setLevel(oneLevel)
+        oneLog.logfile = "disabled_in_api"
 
     return apiLog
 
