@@ -1,13 +1,13 @@
 """ Task - top-level Task class """
 import CRABAPI.TopLevel
 import CRABClient.Commands.submit
-from WMCore.Configuration import ConfigSection
+from WMCore.Configuration import Configuration
 class Task(object):
     """
         Task - Wraps methods and attributes for a single analysis task
     """
     def __init__(self, submitClass = CRABClient.Commands.submit.submit):
-        self.config = ConfigSection()
+        self.config = Configuration()
         self.apiLog, self.clientLog, self.tracebackLog = \
                 CRABAPI.TopLevel.getAllLoggers()
         self.submitClass = submitClass
@@ -16,10 +16,11 @@ class Task(object):
         """
             submit - Sends the current task to the server. Returns requestID
         """
-        args = ['--debug.configInmemory', self.config, \
-                '--skip-proxy','unittest-noproxy']
+        args = ['-c', self.config, '--skip-proxy', '1']
         submitCommand = self.submitClass(self.clientLog, args)
-        return submitCommand()
+        retval = submitCommand()
+        print "retval was %s" % retval
+        return retval['uniquerequestname']
 
     def kill(self):
         """

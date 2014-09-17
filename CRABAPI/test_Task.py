@@ -30,7 +30,7 @@ class Task(unittest.TestCase):
             def __init__(*args, **kwargs):
                 pass
             def __call__(*args, **kwargs):
-                return "TestingRequestID"
+                return {'uniquerequestname' :"TestingRequestID" }
         self.myTask.submitClass = dummyClient
         self.assertEqual(self.myTask.submit(), "TestingRequestID")
 
@@ -44,6 +44,7 @@ class DeepTask(unittest.TestCase):
         self.testDir = tempfile.mkdtemp()
 
     def tearDown(self):
+        CRABClient.Emulator.clearEmulators()
         if os.path.exists(self.testDir):
             shutil.rmtree(self.testDir)
 
