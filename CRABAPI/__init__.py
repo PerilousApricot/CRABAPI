@@ -25,7 +25,8 @@ def setUpPackage():
     import logging
     setLogging(logging.DEBUG, logging.DEBUG, logging.DEBUG)
 
-
 # Used if someone does an "import * from CRABAPI"
 from CRABAPI.Abstractions import Task
-__all__ = ["getTask", "setLogging", "getAllLoggers", "getLogger", "Task"]
+from CRABAPI.RawCommand import execRaw
+__all__ = ["getTask", "setLogging", "getAllLoggers", "getLogger", "Task", \
+           "execRaw"]
