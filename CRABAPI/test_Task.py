@@ -3,7 +3,7 @@ import os.path
 import shutil
 import tempfile
 import unittest
-import CRABAPI.Task
+import CRABAPI.Abstractions
 import CRABClient.Emulator
 class Task(unittest.TestCase):
     """
@@ -11,10 +11,10 @@ class Task(unittest.TestCase):
         completely)
     """
     def setUp(self):
-        self.myTask = CRABAPI.Task.Task()
+        self.myTask = CRABAPI.Abstractions.Task()
 
     def test_Task(self):
-        self.assertIsInstance(self.myTask, CRABAPI.Task.Task)
+        self.assertIsInstance(self.myTask, CRABAPI.Abstractions.Task)
 
     def test_kill(self):
         self.assertRaises(NotImplementedError, self.myTask.kill)
@@ -74,7 +74,7 @@ class DeepTask(unittest.TestCase):
                 return {'hashkey':'unittest-dummy-tarball'}
         CRABClient.Emulator.setEmulator('rest', dummyRest)
         CRABClient.Emulator.setEmulator('ufc', dummyUFC)
-        myTask = CRABAPI.Task.Task()
+        myTask = CRABAPI.Abstractions.Task()
         myTask.config.section_("General")
         myTask.config.General.requestName   = 'test1'
         myTask.config.General.saveLogs = True

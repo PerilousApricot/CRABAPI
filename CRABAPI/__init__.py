@@ -1,10 +1,22 @@
 """ CRABAPI - https://github.com/PerilousApricot/CRABAPI
-    Normally I keep __init__.py blank, but this is a but of delicious
-    syntactic sugar for some common operations"""
+        The outward-facing portion of the API
+"""
 
 from CRABAPI.TopLevel import getTask, setLogging, getAllLoggers, getLogger
 
-__all__ = ["getTask", "setLogging", "getAllLoggers", "getLogger"]
+# Make sense of CRABClient's exceptions by making an exception tree
+class APIException(Exception):
+    """
+        APIException - top of the CRABAPI exception tree
+    """
+    pass
+
+class BadArgumentException(APIException):
+    """
+        BadArgumentException - Arguments passed didn't pass optparse's muster
+    """
+    pass
+
 
 def setUpPackage():
     """ Need to make sure logging is initialized before any tests run. This
@@ -12,3 +24,8 @@ def setUpPackage():
         suite """
     import logging
     setLogging(logging.DEBUG, logging.DEBUG, logging.DEBUG)
+
+
+# Used if someone does an "import * from CRABAPI"
+from CRABAPI.Abstractions import Task
+__all__ = ["getTask", "setLogging", "getAllLoggers", "getLogger", "Task"]
